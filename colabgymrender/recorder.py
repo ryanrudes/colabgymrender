@@ -1,58 +1,74 @@
-from pyvirtualdisplay import Display
-from moviepy.editor import *
-import time
+from IPython.core.interactiveshell import InteractiveShell
+InteractiveShell.ast_node_interactivity = 'all'
+
+import os
 import gym
 import cv2
-import os
+import time
+from moviepy.editor import *
+from IPython.display import HTML
 
-class Recorder:
-  def __init__(self, env, directory, fps=None):
-    display = Display()
-    display.start()
-    if not os.path.exists(directory):
-      os.mkdir(directory)
+class Recorder(gym.Wrapper):
+  def __init__(self, env, directory, auto_release=True, size=None, fps=None):
     self.env = env
     self.directory = directory
-    self.env.reset()
-    self.width, self.height, _ = self.env.render(mode = 'rgb_array').shape
-    self.fps = fps if not fps is None else self.env.metadata['video.frames_per_second'] if hasattr(self.env.metadata, 'video.frames_per_second') else 30
-    self.writer = None
-    self.paused = False
-    self.display = Display(size = (self.width, self.height))
-    self.display.start()
+    self.auto_release = auto_release
+    self.active = True
+
+    if not os.path.exists(self.directory):
+      os.mkdir(self.directory)
+
+    if size is None:
+      self.env.reset()
+      self.size = self.env.render(mode = 'rgb_array').shape[:2][::-1]
+    else:
+      self.size = size
+
+    if fps is None:
+      if 'video.frames_per_second' in self.env.metadata:
+        self.fps = self.env.metadata['video.frames_per_second']
+      else:
+        self.fps = 30
+    else:
+      self.fps = fps
 
   def pause(self):
-    self.paused = True
+    self.active = False
 
   def resume(self):
-    self.paused = False
-    
-  def __getattr__(self, name):
-    if name in ['env', 'path', 'directory', 'play', 'width', 'height', 'fps', 'writer', 'reset', 'step']:
-      return self.__getattr__(name)
-    else:
-      return self.env.__getattr__(name)
+    self.active = True
+
+  def _start(self):
+    self.cliptime = time.time()
+    self.path = f'{self.directory}/{self.cliptime}.mp4'
+    fourcc = cv2.VideoWriter_fourcc(*'MP4V')
+    self._writer = cv2.VideoWriter(self.path, fourcc, self.fps, self.size)
+
+  def _write(self):
+    if self.active:
+      frame = self.env.render(mode = 'rgb_array')
+      frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+      self._writer.write(frame)
+
+  def release(self):
+    self._writer.release()
 
   def reset(self):
     observation = self.env.reset()
-    if not self.paused:
-      now = time.time()
-      self.path = f'{self.directory}/{now}.mp4'
-      self.writer = cv2.VideoWriter(self.path, cv2.VideoWriter_fourcc(*'MP4V'), self.fps, (self.height, self.width))
-      self.writer.write(cv2.cvtColor(self.env.render(mode = 'rgb_array'), cv2.COLOR_RGB2BGR))
+    self._start()
+    self._write()
     return observation
 
   def step(self, action):
-    observation, reward, terminal, info = self.env.step(action)
-    if not self.paused:
-      self.writer.write(cv2.cvtColor(self.env.render(mode = 'rgb_array'), cv2.COLOR_RGB2BGR))
-      if terminal:
-        self.writer.release()
-    return observation, reward, terminal, info
+    data = self.env.step(action)
+    self._write()
 
-  def play(self):
-    if not self.display.is_alive():
-      self.display.start()
+    if self.auto_release and data[2]:
+      self.release()
 
-    with VideoFileClip(self.path) as video:
-      return video.ipython_display(width = self.width, height = self.height)
+    return data
+
+  def play(self, **kwargs):
+    kwargs.setdefault('autoplay', True)
+    kwargs.setdefault('center', False)
+    return VideoFileClip(self.path).ipython_display(**kwargs)
