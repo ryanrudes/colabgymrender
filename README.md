@@ -4,9 +4,8 @@
 
 ## Installation
 ```bash
-pip install gym pyvirtualdisplay > /dev/null 2>&1
 apt-get install -y xvfb python-opengl ffmpeg > /dev/null 2>&1
-pip install colabgymrender
+pip install -U colabgymrender
 ```
 
 ## Usage
