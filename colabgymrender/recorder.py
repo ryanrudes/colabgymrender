@@ -6,7 +6,10 @@ import gym
 import cv2
 import time
 from moviepy.editor import *
-from IPython.display import HTML
+from pyvirtualdisplay import Display
+
+display = Display(visible = 0, size = (800, 600))
+display.start()
 
 class Recorder(gym.Wrapper):
   def __init__(self, env, directory, auto_release=True, size=None, fps=None):
