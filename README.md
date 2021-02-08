@@ -14,7 +14,7 @@ pip install colabgymrender
 import gym
 from colabgymrender.recorder import Recorder
 
-env = gym.make("Qbert-v0")
+env = gym.make("Breakout-v0")
 directory = './video'
 env = Recorder(env, directory)
 
@@ -27,4 +27,4 @@ while not terminal:
 env.play()
 ```
 
-> <a href="https://youtu.be/R1uWOSvglAo"><img src="https://i.ibb.co/K55YtmM/ezgif-frame-001.jpg" border="0"></img></a>
+> <a href="https://youtu.be/ma4Oj775jo0"><img src="https://i.ibb.co/zJtGzZY/ezgif-frame-098.jpg" border="0"></img></a>
