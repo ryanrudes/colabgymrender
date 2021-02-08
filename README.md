@@ -1,11 +1,12 @@
 # Gym Rendering for Colab
 
+> [PyPi](https://pypi.org/project/colabgymrender/)
 
 ## Installation
 ```bash
-pip install colabgymrender==1.0.2
 pip install gym pyvirtualdisplay > /dev/null 2>&1
 apt-get install -y xvfb python-opengl ffmpeg > /dev/null 2>&1
+pip install colabgymrender==1.0.2
 ```
 
 ## Usage
