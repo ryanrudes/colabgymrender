@@ -35,10 +35,10 @@ class Recorder:
 
   def reset(self):
     observation = self.env.reset()
-    now = time.time()
-    self.path = f'{self.directory}/{now}.mp4'
-    self.writer = cv2.VideoWriter(self.path, cv2.VideoWriter_fourcc(*'MP4V'), self.fps, (self.height, self.width))
     if not self.paused:
+      now = time.time()
+      self.path = f'{self.directory}/{now}.mp4'
+      self.writer = cv2.VideoWriter(self.path, cv2.VideoWriter_fourcc(*'MP4V'), self.fps, (self.height, self.width))
       self.writer.write(cv2.cvtColor(self.env.render(mode = 'rgb_array'), cv2.COLOR_RGB2BGR))
     return observation
 
@@ -46,8 +46,8 @@ class Recorder:
     observation, reward, terminal, info = self.env.step(action)
     if not self.paused:
       self.writer.write(cv2.cvtColor(self.env.render(mode = 'rgb_array'), cv2.COLOR_RGB2BGR))
-    if terminal:
-      self.writer.release()
+      if terminal:
+        self.writer.release()
     return observation, reward, terminal, info
 
   def play(self):
