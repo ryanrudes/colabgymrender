@@ -14,7 +14,7 @@ setup(
           'pyvirtualdisplay',
           'moviepy',
           'gym',
-          'cv2'
+          'opencv-python'
       ],
   classifiers=[
     'Development Status :: 5 - Production/Stable',
