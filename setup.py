@@ -3,21 +3,16 @@ from setuptools.command.develop import develop
 from setuptools.command.install import install
 from subprocess import check_call
 
-class InstallXVFB(install):
-    def run(self):
-        check_call("apt-get install -y xvfb python-opengl ffmpeg > /dev/null 2>&1".split())
-        develop.run(self)
-
 setup(
   name = 'colabgymrender',
   packages = ['colabgymrender'],
-  version = '1.0.6',
+  version = '1.0.7',
   license='MIT',
   description = 'A wrapper for rendering OpenAI Gym environments in Google Colab',
   author = 'Ryan Rudes',
   author_email = 'ryanrudes@gmail.com',
   url = 'https://github.com/Ryan-Rudes/colabgymrender',
-  download_url = 'https://github.com/Ryan-Rudes/colabgymrender/archive/v1.0.6.tar.gz',
+  download_url = 'https://github.com/Ryan-Rudes/colabgymrender/archive/v1.0.7.tar.gz',
   keywords = ['colab', 'gym', 'render', 'openai'],
   install_requires=[
           'moviepy',
@@ -25,9 +20,6 @@ setup(
           'opencv-python',
           'pyvirtualdisplay'
       ],
-  cmdclass={
-        'install': InstallXVFB,
-  },
   classifiers=[
     'Development Status :: 5 - Production/Stable',
     'Intended Audience :: Developers',
