@@ -1,7 +1,7 @@
 # Gym Rendering for Colab
 
 * [PyPi](https://pypi.org/project/colabgymrender/)
-* [Colab Demo](https://colab.research.google.com/drive/1zmqSrP1-Ha_aDNyzucMyF8yDhG5E-ESO?usp=sharing)
+* [YouTube Demo](https://youtu.be/nv2dU_9oZJ0)
 
 ## Installation
 ```bash
