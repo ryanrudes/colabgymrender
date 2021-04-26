@@ -32,4 +32,4 @@ env.play()
 ## Demo
 https://user-images.githubusercontent.com/18452581/116127430-d2afb300-a695-11eb-991a-99d13c015006.mp4
 
-* [Watch it on YouTube](https://youtu.be/nv2dU_9oZJ0)
+[Watch it on YouTube](https://youtu.be/nv2dU_9oZJ0)
