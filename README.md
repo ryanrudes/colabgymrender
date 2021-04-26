@@ -1,6 +1,8 @@
 # Gym Rendering for Colab
 
-* [PyPi](https://pypi.org/project/colabgymrender/)
+[![PyPI download month](https://img.shields.io/pypi/dm/colabgymrender.svg)](https://pypi.python.org/pypi/colabgymrender/)
+![PyPI](https://img.shields.io/pypi/v/colabgymrender)
+
 * [YouTube Demo](https://youtu.be/nv2dU_9oZJ0)
 
 ## Installation
