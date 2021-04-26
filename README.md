@@ -31,4 +31,5 @@ while not terminal:
 env.play()
 ```
 
-> <a href="https://youtu.be/ma4Oj775jo0"><img src="https://i.ibb.co/zJtGzZY/ezgif-frame-098.jpg" border="0"></img></a>
+## Demo
+https://user-images.githubusercontent.com/18452581/116127430-d2afb300-a695-11eb-991a-99d13c015006.mp4
