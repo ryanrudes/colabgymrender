@@ -3,7 +3,7 @@
 [![PyPI download month](https://img.shields.io/pypi/dm/colabgymrender.svg)](https://pypi.python.org/pypi/colabgymrender/)
 ![PyPI - Status](https://img.shields.io/pypi/status/colabgymrender)
 ![PyPI](https://img.shields.io/pypi/v/colabgymrender)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/colabgymrender)
+![GitHub](https://img.shields.io/github/license/Ryan-Rudes/colabgymrender)
 
 * [YouTube Demo](https://youtu.be/nv2dU_9oZJ0)
 
