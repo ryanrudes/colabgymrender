@@ -4,6 +4,7 @@
 [![PyPI - Status](https://img.shields.io/pypi/status/colabgymrender)](https://pypi.python.org/pypi/colabgymrender/)
 [![PyPI](https://img.shields.io/pypi/v/colabgymrender)](https://pypi.python.org/pypi/colabgymrender/)
 ![GitHub](https://img.shields.io/github/license/Ryan-Rudes/colabgymrender)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Ryan-Rudes/colabgymrender/blob/main/notebooks/demo.ipynb)
 
 ## Installation
 ```bash
