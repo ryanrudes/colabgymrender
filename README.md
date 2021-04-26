@@ -5,8 +5,6 @@
 ![PyPI](https://img.shields.io/pypi/v/colabgymrender)
 ![GitHub](https://img.shields.io/github/license/Ryan-Rudes/colabgymrender)
 
-* [YouTube Demo](https://youtu.be/nv2dU_9oZJ0)
-
 ## Installation
 ```bash
 apt-get install -y xvfb python-opengl ffmpeg > /dev/null 2>&1
@@ -33,3 +31,5 @@ env.play()
 
 ## Demo
 https://user-images.githubusercontent.com/18452581/116127430-d2afb300-a695-11eb-991a-99d13c015006.mp4
+
+* [Watch it on YouTube](https://youtu.be/nv2dU_9oZJ0)
