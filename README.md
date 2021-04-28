@@ -1,6 +1,6 @@
 # Gym Rendering for Colab
 
-[![PyPI download month](https://img.shields.io/pypi/dd/colabgymrender.svg)](https://pypi.python.org/pypi/colabgymrender/)
+[![PyPI download month](https://img.shields.io/pypi/dm/colabgymrender.svg)](https://pypi.python.org/pypi/colabgymrender/)
 [![PyPI - Status](https://img.shields.io/pypi/status/colabgymrender)](https://pypi.python.org/pypi/colabgymrender/)
 [![PyPI](https://img.shields.io/pypi/v/colabgymrender)](https://pypi.python.org/pypi/colabgymrender/)
 ![GitHub](https://img.shields.io/github/license/Ryan-Rudes/colabgymrender)
