@@ -14,12 +14,7 @@ setup(
   url = 'https://github.com/Ryan-Rudes/colabgymrender',
   download_url = 'https://github.com/Ryan-Rudes/colabgymrender/archive/v1.0.9.tar.gz',
   keywords = ['colab', 'gym', 'render', 'openai'],
-  install_requires=[
-          'moviepy',
-          'ipython',
-          'opencv-python',
-          'pyvirtualdisplay'
-      ],
+  install_requires=['moviepy'],
   classifiers=[
     'Development Status :: 5 - Production/Stable',
     'Intended Audience :: Developers',

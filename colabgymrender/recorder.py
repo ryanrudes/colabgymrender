@@ -1,13 +1,9 @@
-from pyvirtualdisplay import Display
-from functools import partialmethod
+from IPython.core.display import Video, display
 from moviepy.editor import *
-from tqdm import tqdm
 import time
 import cv2
 import gym
 import os
-
-tqdm.__init__ = partialmethod(tqdm.__init__, disable=True)
 
 class Recorder(gym.Wrapper):
     def __init__(self, env, directory, auto_release=True, size=None, fps=None):
@@ -16,22 +12,22 @@ class Recorder(gym.Wrapper):
         self.auto_release = auto_release
         self.active = True
 
-    if not os.path.exists(self.directory):
-        os.mkdir(self.directory)
+        if not os.path.exists(self.directory):
+            os.mkdir(self.directory)
 
-    if size is None:
-        self.env.reset()
-        self.size = self.env.render(mode = 'rgb_array').shape[:2][::-1]
-    else:
-        self.size = size
-
-    if fps is None:
-        if 'video.frames_per_second' in self.env.metadata:
-            self.fps = self.env.metadata['video.frames_per_second']
+        if size is None:
+            self.env.reset()
+            self.size = self.env.render(mode = 'rgb_array').shape[:2][::-1]
         else:
-            self.fps = 30
-    else:
-        self.fps = fps
+            self.size = size
+
+        if fps is None:
+            if 'video.frames_per_second' in self.env.metadata:
+                self.fps = self.env.metadata['video.frames_per_second']
+            else:
+                self.fps = 30
+        else:
+            self.fps = fps
 
     def pause(self):
         self.active = False
@@ -69,8 +65,10 @@ class Recorder(gym.Wrapper):
 
         return data
 
-    def play(self, **kwargs):
-        kwargs.setdefault('autoplay', True)
-        kwargs.setdefault('center', False)
-        kwargs.setdefault('center', False)
-        return VideoFileClip(self.path).ipython_display(**kwargs)
+    def play(self):
+        start = time.time()
+        filename = 'temp-{start}.mp4'
+        clip = VideoFileClip(self.path)
+        clip.write_videofile(filename, progress_bar = False, verbose = False)
+        display(Video(filename, embed = True))
+        os.remove(filename)

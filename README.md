@@ -9,7 +9,7 @@
 ## Installation
 ```bash
 apt-get install -y xvfb python-opengl ffmpeg > /dev/null 2>&1
-pip install -U colabgymrender
+pip install colabgymrender
 ```
 
 ## Usage
