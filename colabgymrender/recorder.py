@@ -50,14 +50,14 @@ class Recorder(gym.Wrapper):
     def release(self):
         self._writer.release()
 
-    def reset(self):
-        observation = self.env.reset()
+    def reset(self, *args, **kwargs):
+        observation = self.env.reset(*args, **kwargs)
         self._start()
         self._write()
         return observation
 
-    def step(self, action):
-        data = self.env.step(action)
+    def step(self, *args, **kwargs):
+        data = self.env.step(*args, **kwargs)
         self._write()
 
         if self.auto_release and data[2]:
