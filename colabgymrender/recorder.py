@@ -6,11 +6,12 @@ import gym
 import os
 
 class Recorder(gym.Wrapper):
-    def __init__(self, env, directory, auto_release=True, size=None, fps=None):
+    def __init__(self, env, directory, auto_release=True, size=None, fps=None, rgb=True):
         super(Recorder, self).__init__(env)
         self.directory = directory
         self.auto_release = auto_release
         self.active = True
+        self.rgb = rgb
 
         if not os.path.exists(self.directory):
             os.mkdir(self.directory)
@@ -44,7 +45,8 @@ class Recorder(gym.Wrapper):
     def _write(self):
         if self.active:
             frame = self.env.render(mode = 'rgb_array')
-            frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+            if self.rgb:
+                frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             self._writer.write(frame)
 
     def release(self):
