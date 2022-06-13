@@ -1,4 +1,4 @@
-from IPython.core.display import Video, display
+from IPython.display import Video, display
 from moviepy.editor import *
 import time
 import cv2
@@ -50,8 +50,8 @@ class Recorder(gym.Wrapper):
     def release(self):
         self._writer.release()
 
-    def reset(self):
-        observation = self.env.reset()
+    def reset(self, seed):
+        observation = self.env.reset(seed=seed)
         self._start()
         self._write()
         return observation
