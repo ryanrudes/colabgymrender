@@ -67,10 +67,13 @@ class Recorder(gym.Wrapper):
 
         return data
 
+    def save_recording(self, filename):
+        clip = VideoFileClip(self.path)
+        clip.write_videofile(filename, verbose = False)
+
     def play(self):
         start = time.time()
         filename = 'temp-{start}.mp4'
-        clip = VideoFileClip(self.path)
-        clip.write_videofile(filename, progress_bar = False, verbose = False)
+        self.save_recording(filename)
         display(Video(filename, embed = True))
         os.remove(filename)
