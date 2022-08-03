@@ -19,7 +19,7 @@ Problem:
 RuntimeError: imageio.ffmpeg.download() has been deprecated. Use 'pip install imageio-ffmpeg' instead.'
 ```
 Solution:
-Install earlier version of `imageio`, the restart runtime.
+Install earlier version of `imageio`, then restart runtime.
 ```
 pip install imageio==2.4.1
 ```
