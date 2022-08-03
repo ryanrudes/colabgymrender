@@ -12,6 +12,18 @@ apt-get install -y xvfb python-opengl ffmpeg > /dev/null 2>&1
 pip install colabgymrender
 ```
 
+### Common Issues
+
+Problem:
+```
+RuntimeError: imageio.ffmpeg.download() has been deprecated. Use 'pip install imageio-ffmpeg' instead.'
+```
+Solution:
+Install earlier version of `imageio`, the restart runtime.
+```
+pip install imageio==2.4.1
+```
+
 ## Usage
 ```python
 import gym
