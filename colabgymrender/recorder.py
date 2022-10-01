@@ -18,7 +18,7 @@ class Recorder(gym.Wrapper):
 
         if size is None:
             self.env.reset()
-            self.size = self.env.render(mode = 'rgb_array').shape[:2][::-1]
+            self.size = self.env.render().shape[:2][::-1]
         else:
             self.size = size
 
@@ -44,7 +44,7 @@ class Recorder(gym.Wrapper):
 
     def _write(self):
         if self.active:
-            frame = self.env.render(mode = 'rgb_array')
+            frame = self.env.render()
             if self.rgb:
                 frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             self._writer.write(frame)
