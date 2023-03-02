@@ -9,19 +9,11 @@
 ## Installation
 ```bash
 apt-get install -y xvfb python-opengl ffmpeg > /dev/null 2>&1
-pip install colabgymrender
-```
-
-### Common Issues
-
-Problem:
-```
-RuntimeError: imageio.ffmpeg.download() has been deprecated. Use 'pip install imageio-ffmpeg' instead.'
-```
-Solution:
-Install earlier version of `imageio`, then restart runtime.
-```
+pip install -U colabgymrender
 pip install imageio==2.4.1
+pip install --upgrade AutoROM
+AutoROM --accept-license
+pip install gym[atari,accept-rom-license]
 ```
 
 ## Usage
