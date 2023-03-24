@@ -35,6 +35,7 @@ jobs:
           pytest tests/
       - name: Build package
         run: |
+          mkdir dist
           python setup.py sdist bdist_wheel
       - name: Upload package artifact
         uses: actions/upload-artifact@v3
