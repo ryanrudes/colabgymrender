@@ -13,23 +13,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: '3.x'
-      - name: Install dependencies
-        run: |
-          pip install wheel setuptools twine
-          sudo apt-get update
-          sudo apt-get install -y xvfb python-opengl ffmpeg
-      - name: Install Python dependencies
-        run: |
-          pip install imageio==2.4.1
-          pip install --upgrade AutoROM
-          AutoROM --accept-license
-          pip install gym[atari,accept-rom-license]
-          pip install pytest
       - name: Run tests
         run: |
           pytest tests/
