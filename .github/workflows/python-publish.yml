@@ -9,8 +9,9 @@
 name: Publish to TestPyPI
 
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - dev
 
 permissions:
   contents: read
