@@ -24,6 +24,7 @@ jobs:
         pip install wheel setuptools twine
     - name: Install Python dependencies
       run: |
+        pip install --upgrade pip
         pip install imageio==2.4.1
         pip install --upgrade AutoROM
         AutoROM --accept-license
