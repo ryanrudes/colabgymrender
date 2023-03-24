@@ -26,7 +26,8 @@ jobs:
         pip install --upgrade pip
         pip install imageio==2.4.1
         pip install --upgrade AutoROM
-        pip install gym[atari,accept-rom-license]
+        AutoROM --accept-license
+        pip install gym[atari]
     - name: Download package artifact
       uses: actions/download-artifact@v3
       with:
