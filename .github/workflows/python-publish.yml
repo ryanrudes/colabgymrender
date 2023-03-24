@@ -36,10 +36,10 @@ jobs:
         AutoROM --accept-license
         pip install gym[atari,accept-rom-license]
     - name: Download package artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: Package
-          path: dist/
+      uses: actions/download-artifact@v3
+      with:
+        name: Package
+        path: dist/
     - name: Upload to Test PyPI
       run: |
           twine upload --repository-url https://test.pypi.org/legacy/ dist/*
