@@ -41,7 +41,7 @@ jobs:
     - name: Upload to Test PyPI
       uses: PyCQA/twine-action@v2
       with:
-        username: ryanrudes
+        username: __token__
         password: ${{ secrets.TEST_PYPI_API_TOKEN }}
         repository-url: https://test.pypi.org/legacy/
         package: dist/*
