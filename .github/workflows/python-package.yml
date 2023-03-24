@@ -22,7 +22,7 @@ jobs:
         run: |
           pip install wheel setuptools twine
           sudo apt-get update
-          sudo apt-get install -y xvfb python-opengl ffmpeg
+          sudo apt-get install -y xvfb python-opengl ffmpeg python3-libtorrent
       - name: Install Python dependencies
         run: |
           pip install imageio==2.4.1
