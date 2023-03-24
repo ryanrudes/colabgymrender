@@ -7,7 +7,7 @@ import os
 
 class Recorder(gym.Wrapper):
     def __init__(self, env, directory, auto_release=True, size=None, fps=None, rgb=True):
-        super(Recorder, self).__init__(env)
+        super().__init__(env)
         self.directory = directory
         self.auto_release = auto_release
         self.active = True
