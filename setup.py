@@ -1,32 +1,32 @@
-from setuptools import setup
-from setuptools.command.develop import develop
-from setuptools.command.install import install
-from subprocess import check_call
+from setuptools import setup, find_packages
+import codecs
+import os
 
+here = os.path.abspath(os.path.dirname(__file__))
+
+with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
+    long_description = "\\n" + fh.read()
+    
 setup(
   name = 'colabgymrender',
   packages = ['colabgymrender'],
-  version = '1.1.0',
-  license='MIT',
+  version = '{{VERSION_PLACEHOLDER}}',
+  license = 'MIT',
   description = 'A wrapper for rendering OpenAI Gym environments in Google Colab',
+  long_description_content_type = "text/markdown",
+  long_description = long_description,
   author = 'Ryan Rudes',
   author_email = 'ryanrudes@gmail.com',
-  url = 'https://github.com/Ryan-Rudes/colabgymrender',
-  download_url = 'https://github.com/Ryan-Rudes/colabgymrender/archive/v1.1.0.tar.gz',
+  url = 'https://github.com/ryanrudes/colabgymrender',
   keywords = ['colab', 'gym', 'render', 'openai'],
-  install_requires=['moviepy'],
-  classifiers=[
-    'Development Status :: 5 - Production/Stable',
+  packages = find_packages(),
+  install_requires = ['moviepy', 'gym'],
+  classifiers = [
+    'Development Status :: 3 - Alpha',
     'Intended Audience :: Developers',
-    'Topic :: Software Development :: Build Tools',
+    'Topic :: Scientific/Engineering :: Artificial Intelligence',
+    'Topic :: Software Development :: Libraries :: Python Modules',
     'License :: OSI Approved :: MIT License',
-    'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.4',
-    'Programming Language :: Python :: 3.5',
-    'Programming Language :: Python :: 3.6',
-    'Programming Language :: Python :: 3.7',
-    'Programming Language :: Python :: 3.8',
     'Programming Language :: Python :: 3.9',
-    'Programming Language :: Python :: 3.10',
   ],
 )
