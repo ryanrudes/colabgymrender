@@ -40,7 +40,7 @@ jobs:
       run: |
         python setup.py sdist bdist_wheel
     - name: Upload to Test PyPI
-      uses: PyCQA/twine-action@v2
+      uses: ryanrudes/colabgymrender
       with:
         username: __token__
         password: ${{ secrets.TEST_PYPI_API_TOKEN }}
