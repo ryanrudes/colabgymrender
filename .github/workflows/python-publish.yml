@@ -18,9 +18,6 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: '3.x'
-      - name: Run tests
-        run: |
-          pytest tests/
       - name: Build package
         run: |
           python setup.py sdist bdist_wheel
@@ -42,7 +39,7 @@ jobs:
         python-version: '3.x'
     - name: Install dependencies
       run: |
-        pip install wheel setuptools twine
+        pip install wheel setuptools twine pytest
     - name: Install Python dependencies
       run: |
         pip install --upgrade pip
@@ -55,6 +52,9 @@ jobs:
       with:
         name: Package
         path: dist/
+    - name: Run tests
+      run: |
+        pytest tests/
     - name: Upload to Test PyPI
       run: |
         twine upload --repository-url https://test.pypi.org/legacy/ dist/*
