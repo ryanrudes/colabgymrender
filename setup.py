@@ -9,7 +9,6 @@ with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     
 setup(
   name = 'colabgymrender',
-  packages = ['colabgymrender'],
   version = '{{VERSION_PLACEHOLDER}}',
   license = 'MIT',
   description = 'A wrapper for rendering OpenAI Gym environments in Google Colab',
