@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Upload Python Package
+name: Publish to TestPyPI
 
 on:
   release:
@@ -16,10 +16,8 @@ permissions:
   contents: read
 
 jobs:
-  deploy:
-
+  build:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python
@@ -28,14 +26,22 @@ jobs:
         python-version: '3.x'
     - name: Install dependencies
       run: |
-        python -m pip install --upgrade pip
-        python -m pip install -r requirements.txt
-        python setup.py install
+        pip install wheel setuptools twine
+        sudo apt-get update
+        sudo apt-get install -y xvfb python-opengl ffmpeg
+    - name: Install Python dependencies
+      run: |
+        pip install imageio==2.4.1
+        pip install --upgrade AutoROM
+        AutoROM --accept-license
+        pip install gym[atari,accept-rom-license]
     - name: Build package
-      run: python -m build
-    - name: Publish distribution to Test PyPI
-      uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
+      run: |
+        python setup.py sdist bdist_wheel
+    - name: Upload to Test PyPI
+      uses: PyCQA/twine-action@v2
       with:
-        user: ryanrudes
-        password: ${{ secrets.PYPI_API_TOKEN }}
+        username: ryanrudes
+        password: ${{ secrets.TEST_PYPI_API_TOKEN }}
         repository-url: https://test.pypi.org/legacy/
+        package: dist/*
