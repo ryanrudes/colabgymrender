@@ -20,14 +20,12 @@ jobs:
         python-version: '3.x'
     - name: Install dependencies
       run: |
-        pip install --upgrade pip
         pip install wheel setuptools twine
     - name: Install Python dependencies
       run: |
         pip install --upgrade pip
         pip install imageio==2.4.1
         pip install --upgrade AutoROM
-        AutoROM --accept-license
         pip install gym[atari,accept-rom-license]
     - name: Download package artifact
       uses: actions/download-artifact@v3
