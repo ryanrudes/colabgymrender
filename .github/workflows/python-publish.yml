@@ -17,7 +17,7 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
@@ -29,21 +29,21 @@ jobs:
     - name: Install dependencies
       run: |
         pip install wheel setuptools twine
-        sudo apt-get update
-        sudo apt-get install -y xvfb python-opengl ffmpeg
     - name: Install Python dependencies
       run: |
         pip install imageio==2.4.1
         pip install --upgrade AutoROM
         AutoROM --accept-license
         pip install gym[atari,accept-rom-license]
-    - name: Build package
-      run: |
-        python setup.py sdist bdist_wheel
+    - name: Download package artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: Package
+          path: dist/
     - name: Upload to Test PyPI
-      uses: ryanrudes/colabgymrender@dev
-      with:
-        username: __token__
-        password: ${{ secrets.TEST_PYPI_API_TOKEN }}
-        repository-url: https://test.pypi.org/legacy/
-        package: dist/*
+      run: |
+          twine upload --repository-url https://test.pypi.org/legacy/ dist/*
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
+
