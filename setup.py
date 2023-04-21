@@ -20,7 +20,7 @@ setup(
   name = 'colabgymrender',
   version = version,
   license = 'MIT',
-  description = 'A wrapper for rendering OpenAI Gym environments in Google Colab',
+  description = 'Render OpenAI Gym environments in Google Colaboratory',
   long_description_content_type = "text/markdown",
   long_description = long_description,
   author = 'Ryan Rudes',
