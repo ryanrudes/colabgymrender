@@ -2,6 +2,7 @@ from setuptools import setup, find_packages
 import codecs
 import os
 
+version = os.environ.get('VERSION', '0.1.0')
 here = os.path.abspath(os.path.dirname(__file__))
 
 with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
@@ -9,7 +10,7 @@ with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     
 setup(
   name = 'colabgymrender',
-  version = '{{VERSION_PLACEHOLDER}}',
+  version = version,
   license = 'MIT',
   description = 'A wrapper for rendering OpenAI Gym environments in Google Colab',
   long_description_content_type = "text/markdown",
