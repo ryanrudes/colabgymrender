@@ -29,12 +29,6 @@ jobs:
           --wheel
           --outdir dist/
           .
-      - name: Bump version
-        run: bumpversion --allow-dirty patch
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Set version variable
-        run: echo "::set-env name=VERSION::$(cat VERSION)"
       - name: Publish distribution 📦 to Test PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
