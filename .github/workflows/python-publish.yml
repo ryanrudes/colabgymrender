@@ -1,63 +1,36 @@
 name: Publish Python 🐍 distributions 📦 to TestPyPI
 
-on:
-  push:
-    branches:
-      - dev
+on: push
 
 permissions:
   contents: read
 
 jobs:
-  build:
+  build-n-publish:
+    name: Build and publish Python 🐍 distributions 📦 to PyPI and TestPyPI
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.x'
-      - name: Build package
-        run: |
-          python setup.py sdist bdist_wheel
-      - name: Upload package artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: Package
-          path: dist/*
-          
-  publish:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+  steps:
+    - uses: actions/checkout@v3
     - name: Set up Python
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v4
       with:
-        python-version: '3.x'
-    - name: Install dependencies
-      run: |
-        pip install wheel setuptools twine pytest
-    - name: Install Python dependencies
-      run: |
-        pip install --upgrade pip
-        pip install imageio==2.4.1
-        pip install --upgrade AutoROM
-        AutoROM --accept-license
-        pip install gym[atari]
-    - name: Download package artifact
-      uses: actions/download-artifact@v3
+        python-version: "3.x"
+    - name: Install pypa/build
+      run: >-
+        python -m
+        pip install
+        build
+        --user
+    - name: Build a binary wheel and a source tarball
+      run: >-
+        python -m
+        build
+        --sdist
+        --wheel
+        --outdir dist/
+        .
+    - name: Publish distribution 📦 to Test PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
       with:
-        name: Package
-        path: dist/
-    - name: Run tests
-      run: |
-        pytest tests/
-    - name: Upload to Test PyPI
-      run: |
-        twine upload --repository-url https://test.pypi.org/legacy/ dist/*
-      env:
-        TWINE_USERNAME: __token__
-        TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
+        password: ${{ secrets.TEST_PYPI_API_TOKEN }}
+        repository-url: https://test.pypi.org/legacy/
