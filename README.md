@@ -1,3 +1,6 @@
+## This repository has been archived (read below)
+Due to breaking changes released in the introduction of `gymnasium`, I have taken a similar route to continue support and avoid confusion, hereby moving all future code maintenance to a newly named repository. See (renderlab)(https://github.com/ryanrudes/renderlab) for details.
+
 # Gym Rendering for Colab
 
 [![PyPI download month](https://img.shields.io/pypi/dm/colabgymrender.svg)](https://pypi.python.org/pypi/colabgymrender/)
