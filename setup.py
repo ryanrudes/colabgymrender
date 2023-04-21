@@ -27,7 +27,7 @@ setup(
   author_email = 'ryanrudes@gmail.com',
   url = 'https://github.com/ryanrudes/colabgymrender',
   keywords = ['colab', 'gym', 'render', 'openai'],
-  packages = find_packages(),
+  packages = ['colabgymrender'],
   install_requires = ['moviepy', 'gym'],
   classifiers = [
     'Development Status :: 3 - Alpha',
